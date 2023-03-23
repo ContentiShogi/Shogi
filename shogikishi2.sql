@@ -1,4 +1,4 @@
-﻿--https://ja.wikipedia.org/wiki/%E5%B0%86%E6%A3%8B%E6%A3%8B%E5%A3%AB%E4%B8%80%E8%A6%A7
+--https://ja.wikipedia.org/wiki/%E5%B0%86%E6%A3%8B%E6%A3%8B%E5%A3%AB%E4%B8%80%E8%A6%A7
 --https://ja.wikipedia.org/wiki/%E5%B0%86%E6%A3%8B%E3%81%AE%E5%A5%B3%E6%B5%81%E6%A3%8B%E5%A3%AB%E4%B8%80%E8%A6%A7
 /*select * into pro_kishi from
 (values
@@ -453,3 +453,107 @@ select * into joryuu_kishi from
 ,('109',N'82',N'-',N'くぼ しょうこ',N'久保翔子',N'2級',N'大阪',N'久保',N'2022年10月1日',N'')
 ,('110',N'83',N'-',N'いまい あや',N'今井絢',N'1級',N'愛知',N'杉本昌',N'2023年2月1日',N'')
 )as female (a,b,c,d,e,f,g,h,i,j)*/
+
+--drop table if exists #temp
+--select a.* into #temp from 
+--(values
+--(N'あまの',N'そうほ',N'天野宗歩',N'七段(棋聖)',N'-',N'',N'(11代宗桂) (大橋柳)',N'1816年',N'-44',N'1859年 6月13日',N'-',N'-',N'-',N'-',N'-')
+--,(N'おの',N'ごへい',N'小野五平',N'十二世名人',N'-',N'徳島',N'(天野)→ (11代宗桂)',N'1831年 11月9日',N'-89',N'1921年 1月29日',N'-',N'-',N'-',N'-',N'-')
+--,(N'さいとう',N'まさお',N'斎藤雅雄',N'八段',N'八段',N'高知',N'小野五',N'',N'',N'',N'-',N'-',N'-',N'-',N'-')
+--,(N'みぞろぎ',N'みつはる',N'溝呂木光治',N'追贈 八段',N'七段',N'東京',N'小野五',N'1891年',N'-50',N'1940年 1月13日',N'1912年',N'21歳',N'1940年 (現役死去)',N'-',N'-')
+--,(N'こすげ',N'けんのすけ',N'小菅剣之助',N'名誉 名人',N'八段',N'愛知',N'(8代宗印) ',N'1865年 2月19日',N'-79',N'1944年 3月6日',N'1884年',N'19歳',N'1893年',N'-',N'-')
+--,(N'せきね',N'きんじろう',N'関根金次郎',N'十三世名人',N'-',N'千葉',N'(8代宗印)→ (12代宗金)',N'1868年 4月23日',N'-77',N'1946年 3月12日',N'1890年',N'22歳',N'-',N'-',N'-')
+--,(N'はなだ',N'ちょうたろう',N'花田長太郎',N'追贈 九段',N'八段',N'北海道',N'関根金',N'1897年 7月6日',N'-50',N'1948年 2月28日',N'-',N'-',N'1948年 (現役死去)',N'-',N'-')
+--,(N'こばやし',N'とうはくさい',N'小林東伯斎',N'八段',N'-',N'和歌山',N'7代宗与 →(天野)',N'',N'',N'1898年',N'-',N'-',N'-',N'-',N'-')
+--,(N'さかた',N'さんきち',N'坂田三吉',N'(阪田三吉)',N'追贈 名人 王将',N'八段',N'大阪',N'(小林東) →(小野五)',N'1870年 7月1日',N'-76',N'1946年 7月23日',N'-',N'-',N'-',N'-')
+--,(N'きみ',N'きんじろう',N'木見金治郎',N'追贈 九段',N'八段',N'岡山',N'(関根金)',N'1878年 6月24日',N'-72',N'1951年 1月7日',N'-',N'-',N'-',N'-',N'-')
+--,(N'いのうえ',N'よしお',N'井上義雄',N'八段',N'-',N'京都',N'(小林東)',N'1866年',N'(54)',N'1920年 8月4日',N'-',N'-',N'-',N'-',N'-')
+--,(N'おおさき',N'くまお',N'大崎熊雄',N'追贈 九段',N'八段',N'高知',N'(関根金) →井上義',N'1884年',N'(55)',N'1939年 4月25日',N'-',N'-',N'-',N'-',N'-')
+--,(N'みやまつ',N'せきさぶろう',N'宮松関三郎',N'追贈 八段',N'七段',N'大阪',N'井上義',N'1886年 1月14日',N'-61',N'1947年 9月26日',N'-',N'-',N'-',N'-',N'-')
+--,(N'かわい',N'ふさくに',N'川井房郷',N'七段',N'六段',N'愛知',N'(8代宗印)',N'1853年',N'-63',N'1915年 7月14日',N'-',N'-',N'-',N'-',N'-')
+--,(N'いしい',N'ひでよし',N'石井秀吉',N'追贈 七段',N'六段',N'東京',N'川井',N'1882-83 年頃',N'-59',N'1941年 11月2日',N'-',N'-',N'1941年 (現役死去)',N'-',N'-')
+--,(N'かんだ',N'たつのすけ',N'神田辰之助',N'追贈 九段',N'八段',N'兵庫',N'(坂田(阪田)) →(木見)',N'1893年 2月22日',N'-50',N'1943年 9月6日',N'-',N'-',N'-',N'0',N'1')
+--,(N'どい',N'いちたろう',N'土居市太郎',N'名誉 名人',N'八段',N'愛媛',N'関根金',N'1887年 11月20日',N'-85',N'1973年 2月28日',N'1910年',N'23歳',N'1949年',N'0',N'1')
+--,(N'やまもと',N'くすお',N'山本樟郎',N'八段',N'八段',N'三重',N'小菅',N'1890年 9月6日',N'-74',N'1965年 2月28日',N'1916年',N'26歳',N'1946年',N'-',N'-')
+--,(N'こいずみ',N'まさのぶ',N'小泉雅信',N'八段',N'-',N'東京',N'関根金',N'1900年 6月8日',N'-64',N'1964年 9月3日',N'1918年',N'18歳',N'1952年',N'-',N'-')
+--,(N'ひらの',N'しんすけ',N'平野信助',N'七段',N'六段',N'青森',N'大崎',N'1891年 5月19日',N'-74',N'1965年 12月12日',N'1918年',N'27歳',N'1947年',N'-',N'-')
+--,(N'ふじうち',N'きんご',N'藤内金吾',N'八段',N'六段',N'愛媛',N'坂田(阪田)',N'1893年 3月20日',N'-74',N'1968年 2月11日',N'1920年',N'27歳',N'1951年',N'-',N'-')
+--,(N'いいづか',N'かんいちろう',N'飯塚勘一郎',N'八段',N'七段',N'茨城',N'大崎',N'1895年 1月7日',N'-71',N'1966年 1月10日',N'1921年',N'26歳',N'1950年',N'-',N'-')
+--,(N'さいとう',N'ぎんじろう',N'斎藤銀次郎',N'－',N'八段',N'東京',N'石井秀',N'1904年 10月7日',N'-75',N'1979年 12月15日',N'1929年',N'25歳',N'1965年 (1966年退会[3])',N'-',N'-')
+--,(N'すずき',N'さだかず',N'鈴木禎一',N'五段',N'-',N'東京',N'大崎',N'1899年 10月16日',N'-55',N'1955年 1月7日',N'1930年頃',N'31歳',N'1954年',N'-',N'-')
+--,(N'たけべ',N'わかお',N'建部和歌夫',N'八段',N'-',N'東京',N'土居',N'1909年 7月25日',N'-65',N'1974年 9月4日',N'1930年',N'21歳',N'1958年',N'-',N'-')
+--,(N'うえだ',N'さんぞう',N'上田三三',N'七段',N'五段',N'大阪',N'木見',N'1893年 1月25日',N'-79',N'1972年 8月26日',N'1931年',N'38歳',N'1947年',N'-',N'-')
+--,(N'うね',N'みよきち',N'畝美与吉',N'七段',N'六段',N'広島',N'神田辰',N'1900年 11月15日',N'-70',N'1971年 9月7日',N'1932年',N'32歳',N'1958年',N'-',N'-')
+--,(N'まつだ',N'たつお',N'松田辰雄',N'八段',N'-',N'大阪',N'神田辰',N'1916年 10月8日',N'-38',N'1955年 1月14日',N'1935年',N'19歳',N'1955年 (現役死去)',N'-',N'-')
+--,(N'おおわく',N'たけし',N'大和久彪',N'追贈 八段',N'七段',N'千葉',N'石井秀',N'1914年 1月23日',N'-42',N'1956年 8月25日',N'1936年',N'22歳',N'1956年 (現役死去)',N'-',N'-')
+--,(N'はしづめ',N'としたろう',N'橋爪敏太郎',N'七段',N'六段',N'東京',N'宮松',N'1909年 3月17日',N'-64',N'1973年 10月25日',N'1936年',N'27歳',N'1959年',N'-',N'-')
+--,(N'のむら',N'よしとら',N'野村慶虎',N'七段',N'六段',N'高知',N'神田辰',N'1899年 12月12日',N'-77',N'1977年 1月10日',N'1936年',N'37歳',N'1957年',N'-',N'-')
+--,(N'むらかみ',N'しんいち',N'村上真一',N'八段',N'-',N'広島',N'木見',N'1897年 6月16日',N'-59',N'1956年 7月2日',N'1937年',N'40歳',N'1956年 (現役死去)',N'-',N'-')
+--,(N'せきぐち',N'しんご',N'関口慎吾',N'追贈 七段',N'六段',N'東京',N'斎藤銀',N'1918年 2月25日',N'-26',N'1945年 2月18日',N'1938年',N'20歳',N'1945年 (現役死去)',N'-',N'-')
+--,(N'はせがわ',N'せいじろう',N'長谷川清二郎',N'－',N'七段',N'千葉',N'石井秀',N'1918年',N'－',N'－',N'1938年',N'20歳',N'1948年休場 (のち退会)',N'-',N'-')
+--,(N'かねたか',N'せいきち',N'金高清吉',N'追贈 八段',N'七段',N'千葉',N'木村雄',N'1919年 3月9日',N'-40',N'1960年 2月16日',N'1941年',N'22歳',N'1960年 (現役死去)',N'-',N'-')
+--,(N'まみや',N'じゅんいち',N'間宮純一',N'－',N'六段',N'静岡',N'溝呂木',N'1908年 8月25日',N'-73',N'1981年 11月19日',N'1941年',N'33歳',N'1957年 (1959年退会[6])',N'-',N'-')
+--,(N'ふじかわ',N'よしお',N'藤川義夫',N'追贈 八段',N'七段',N'熊本',N'大崎',N'1908年 10月2日',N'-56',N'1965年 3月13日',N'1941年',N'33歳',N'1965年 (現役死去)',N'-',N'-')
+--,(N'きょうす',N'ゆきお',N'京須行男',N'追贈 八段',N'七段',N'千葉',N'宮松',N'1914年 1月23日',N'-46',N'1960年 5月2日',N'1943年',N'29歳',N'1959年',N'-',N'-')
+--,(N'まつうら',N'たくぞう',N'松浦卓造',N'八段',N'-',N'広島',N'神田辰',N'1915年 1月22日',N'-62',N'1977年 3月11日',N'1944年',N'29歳',N'1977年 (現役死去)',N'-',N'-')
+--,(N'やまだ',N'みちよし',N'山田道美',N'追贈 九段',N'八段',N'愛知',N'金子',N'1933年 12月11日',N'-36',N'1970年 6月18日',N'1951年',N'18歳',N'1970年 (現役死去)',N'2',N'6')
+--,(N'いちかわ',N'しん',N'市川伸',N'－',N'五段',N'鳥取',N'大山',N'1935年 10月18日',N'－',N'－',N'1954年',N'18歳[7]',N'1967年 (退会)[8]',N'-',N'-'))as 
+--a(firstname,lastname,jpname,rating,rating2,place,teacher,born,number,died,promoted,promotedage,withdrew,titles1,titles2)
+--left join kishi on ltrim(rtrim(a.jpname))=kishi.jpname
+--where kishi.jpname is null
+--update a set lastname=replace(lastname,jp,en)--firstname=replace(firstname,jp,en)--,
+--from #temp a join hiraganacompounds on charindex(hiraganacompounds.jp,a.lastname)>=1
+--select * from #temp
+--update a set lastname=replace(lastname,jp,en)
+--from #temp a join hiragana on --charindex(hiragana.jp,a.firstname)>=1
+--charindex(hiragana.jp,a.lastname)>=1
+--update #temp set firstname=upper(left(firstname,1))+right(firstname,len(firstname)-1)
+--update #temp set teacher=teachers.en from #temp
+--join(values
+--(N'坂田阪田',N'Sakata Sankichi'),
+--(N'7代宗与 →天野',N'Amano Sōho'),
+--(N'8代宗印',N'Itō Sōin III'),
+--(N'坂田阪田 →木見',N'Kimi Kinjirō'),
+--(N'天野→ 11代宗桂',N'Amano Sōho'),
+--(N'小林東',N'Kobayashi Touhakusai'),
+--(N'木村雄',N'Kimura Yoshio'),
+--(N'関根金 →井上義',N'Inoue Yoshio'))as teachers(jp,en)on #temp.teacher=teachers.jp
+--select child.firstname,child.lastname,child.jpname 
+--from #temp child
+--left join #temp teacher on charindex(child.teacher,teacher.jpname)>0 or CHARINDEX(teacher.jpname,child.teacher)>0
+--group by child.firstname,child.lastname,child.jpname having count(*)<1
+--order by child.jpname
+--update #temp set place=en
+--from #temp join
+--(values
+--(N'三重',N'Mie')
+--,(N'京都',N'Kyōto'),(N'兵庫',N'Hyōgo'),
+--(N'千葉',N'Chiba'),(N'和歌山',N'Wakayama'),
+--(N'大阪',N'Ōsaka'),(N'岡山',N'Okayama')
+--,(N'広島',N'Hiroshima'),(N'徳島',N'Tokushima'),(N'愛媛',N'Ehime')
+--,(N'愛知',N'Aichi'),(N'東京',N'Tōkyō'),(N'熊本',N'Kumamoto'),
+--(N'茨城',N'Ibaraki'),(N'青森',N'Aomori'),(N'静岡',N'Shizuoka')
+--,(N'高知',N'Kōchi'),(N'鳥取',N'Tottori')
+--)as places(jp,en)on ltrim(rtrim(#temp.place))=places.jp
+--update #temp set rating2=en
+--from #temp join
+--(values
+--(N'七段',N'7'),(N'五段',N'5'),(N'八段',N'8'),(N'十二世名人',N'8'),(N'名誉 名人',N'8'),(N'追贈 七段',N'7'),(N'追贈 九段',N'9'),(N'追贈 八段','8'),(N'六段',6),('-',0)
+--)as places(jp,en)on ltrim(rtrim(#temp.rating2))=places.jp
+--update #temp set born = replace(replace(replace(replace(born,N'年 ','-'),N'月','-'),N'日','-'),N'1882-83 年頃','1882-01-01')
+--,died = replace(replace(replace(replace(died,N'年 ','-'),N'月','-'),N'日','-'),N'1882-83 年頃','1882-01-01')
+
+--insert into kishi (_id,association,jsa_id,lpsa_id,firstname,lastname,jpname,rating,place,teacher,joined,retired)
+--select 
+--row_number()over (order by child.teacher,child.lastname,child.firstname)_id,
+--'JSA-M'association,NULL jsa_id,NULL lpsa_id,rtrim(ltrim(child.firstname))firstname,rtrim(ltrim(child.lastname))lastname,rtrim(ltrim(child.jpname))jpname
+--,nullif(convert(int,case when child.rating>=child.rating2 then child.rating else child.rating2 end),0) rating
+--,child.place,child.teacher
+--,convert(date,nullif(case when child.promoted>child.born and (child.promoted!='-' or child.born='-') then child.promoted else child.born end,'') )joined
+--,convert(date,nullif(case when child.withdrew<child.died and (child.withdrew!='-' or child.died='-')then child.withdrew else child.died end ,''))retired
+--from #temp child
+select distinct child.teacher from kishi child left join kishi teacher on 
+lower(replace(replace(teacher.lastname+' '+teacher.firstname,'ou','ō'),'oo','ō'))like lower(replace(replace(child.teacher,'ou','ō'),'oo','ō')) or 
+lower(replace(replace(teacher.firstname+' '+teacher.lastname,'ou','ō'),'oo','ō')) like lower(replace(replace(child.teacher,'ou','ō'),'oo','ō'))
+where teacher._id is null
+order by child.teacher
